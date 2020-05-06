@@ -1,0 +1,56 @@
+# CAR WORKSHOP MANAGEMENT
+
+The project is made in Java (jdk 13) language, in Intellij Idea.
+
+Use indications:
+ - <Main> class runs the program (workshop engine);
+ - every interaction with the user requests a stdin input which will be processed
+ and executed;
+ - type of actions required and input examples
+
+    * Enter action type (<employeeAction> | <carAction> | <workshopAction> | <exit>)
+        - the user must enter one of the Strings form <> brackets, "exit" closes the
+        while loop and stops the program;
+    * Enter employee action (<addEmployee> | <printEmployees> | <deleteEmployee> |
+     <editEmployee> | <calculateSalary>)
+        - the user must enter one of the Strings from <> brackets, "addEmployee"
+        requires 5 other Strings (eg input "Mechanic Ion Popescu 23-10-1970 12-12-2003"),
+        "deleteEmployee", "editEmployee" and "calculateSalary" menus requires an id,
+        that must be an Integer number;
+    * Enter car action (<addCar> | <removeCar> | <printCars> | <calculateInsurance> |
+    <calculateDiscountInsurance>)
+        - the user must enter one of the Strings form <> brackets, "addCar" expects
+        a type and then another 4 Strings --- first 3 fixed, 4th depending on type
+        (eg input Standard car "1000 1997 yes Manual",
+        eg input Bus car "1000 1997 no 32",
+        eg input Truck car "1000 1997 yes 100");
+        - "removeCar", "calculateInsurance", "calculateDiscountInsurance" requires an
+        id (Integer);
+    * Enter workshop action (<incrementTime> | <repairCar> | <printStatistics>)
+        - the user must enter one of the Strings from <> brackets, "incrementTime"
+        increases the time with one unity, "repairCar" will open the same menu as
+        "addCar" from "carAction", "printStatistics" will open a new menu;
+    * When entering a car for repairing, the user will get all available workers,
+    for that kind of car, he can choose to leave ("leave"), to wait ("wait"), or
+    choose an available worker (in that case he enters the id); if he wanted to wait,
+    he can choose a certain worker to take over his car in the future (enter id) or
+    can choose to leave ("leave");
+    * "Choose statistics (<biggestLoadWorker> <mostChosenWorker> <workersTips>)"
+        - the user must enter one of the Strings from <> brackets;
+
+Employee accepted types Strings: "Director", "Mechanic", "Assistant";
+Car accepted types Strings: "Standard", "Bus", "Truck";
+Standard car transmission types Strings: "Manual", "Automatic";
+
+Special notes:
+    - I stored cars and and employees in HashMaps to access them in constant time
+    and I simulated 'queue' actions with ArrayLists because in this application the
+    first car in queue wouldn't certainly be the next car to repair (it depends on type);
+    - I simulated the passing of time by letting the user increment it (maybe it's not
+    the best option, but the time should pass for the workshop to have results);
+    - at the beginning, the workshop will be closed and every "workshopAction" will
+    be refused until the first employee is added to the firm (when workshop will open);
+    - factory pattern and singleton patterns for creating cars and employees;
+    - I could use visitor pattern for calculating workers' salary or cars' insurance,
+    but I chose to make them in basic mode to avoid overengineering (too few operations
+    for a design pattern need);
